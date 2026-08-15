@@ -1,8 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import React, { useState, useEffect } from 'react';
-import { Shield, Heart, Salad, Droplet, Drumstick, Soup, Cross, GlassWater, Terminal, MapPin, Mic, MicOff, Zap, Wind, Skull, Activity, Settings, Film, Navigation, Map, Move, EyeOff, RefreshCcw, Car, Plane, Volume2, Eye, Sliders, Building, Flag, Utensils, Plus, Leaf, User } from 'lucide-react';
+import { Shield, Salad, Droplet, Terminal, Zap, Wind, Activity, Car, Plane, Sliders } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import seatbeltIcon from './assets/seatbelt.png';
 
 const postNUI = async (action: string, data: any = {}) => {
   try {
