@@ -484,7 +484,7 @@ local function UpdateDevMode(status)
     if status ~= isDevMode then
         isDevMode = status
         SendNUIMessage({ action = 'setDevMode', value = isDevMode })
-        print("^2[HUD]^7 Dev Mode: " .. (isDevMode and "ENABLED" or "DISABLED"))
+        print("^2[HUD]^7 dev mode: " .. (isDevMode and "enabled" or "disabled"))
     end
 end
 
@@ -819,4 +819,19 @@ end, false)
 
 local defaultKey = Config.ShowIDs and Config.ShowIDs.DefaultKey or 'I'
 RegisterKeyMapping('+showids', 'Show Player IDs~', 'keyboard', defaultKey)
+
+CreateThread(function()
+    local isHudHiddenDueToPause = false
+    while true do
+        Wait(300)
+        local isPaused = IsPauseMenuActive()
+        if isPaused and not isHudHiddenDueToPause then
+            isHudHiddenDueToPause = true
+            SendNUIMessage({ action = "toggleHud", visible = false })
+        elseif not isPaused and isHudHiddenDueToPause then
+            isHudHiddenDueToPause = false
+            SendNUIMessage({ action = "toggleHud", visible = display })
+        end
+    end
+end)
 
